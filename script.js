@@ -12,7 +12,7 @@ document.getElementById("leadForm").addEventListener("submit", function (e) {
     comments: form.comments.value
   };
 
-  fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
+  fetch("https://script.google.com/macros/s/AKfycbx8nzzYNHQIQn4bALim54BbBO7wb6aTmOnM0aKMZkj2f7bP4Ep8rg0RnB8gEbAYBtMO/exec", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
