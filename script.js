@@ -2,7 +2,8 @@ document.getElementById("leadForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   const form = document.getElementById("leadForm");
-  const formData = {
+
+  const data = {
     name: form.name.value,
     mobile: form.mobile.value,
     city: form.city.value,
@@ -13,7 +14,7 @@ document.getElementById("leadForm").addEventListener("submit", function(e) {
 
   fetch("https://script.google.com/macros/s/AKfycbwjlikA3c1SB2Mtbu5UKEl7iDuhy7H2WSdspsGJztSca9_0ANtnMaQZA4xvfuK3Jt69/exec", {
     method: "POST",
-    body: JSON.stringify(formData),
+    body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json"
     }
