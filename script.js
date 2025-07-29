@@ -1,30 +1,16 @@
 document.getElementById("leadForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const data = {
-    name: document.getElementById("name").value,
-    mobile: document.getElementById("mobile").value,
-    city: document.getElementById("city").value,
-    state: document.getElementById("state").value,
-    job_type: document.getElementById("job_type").value,
-    comments: document.getElementById("comments").value,
-  };
+  const formData = new FormData(document.getElementById("leadForm"));
 
-  fetch("https://script.google.com/macros/s/AKfycbx8nzzYNHQIQn4bALim54BbBO7wb6aTmOnM0aKMZkj2f7bP4Ep8rg0RnB8gEbAYBtMO/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwjlikA3c1SB2Mtbu5UKEl7iDuhy7H2WSdspsGJztSca9_0ANtnMaQZA4xvfuK3Jt69/exec", {
     method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
+    body: formData
   })
-  .then(response => response.json())
+  .then(response => response.text())
   .then(result => {
-    if (result.result === "success") {
-      alert("Form submitted successfully!");
-      document.getElementById("leadForm").reset(); // clear form
-    } else {
-      alert("Something went wrong: " + result.message);
-    }
+    alert("Form submitted successfully!");
+    document.getElementById("leadForm").reset();
   })
   .catch(error => {
     console.error("Error:", error);
