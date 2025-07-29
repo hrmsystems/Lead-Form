@@ -1,15 +1,13 @@
-document.getElementById("leadForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent form reload
-
-  const form = e.target;
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
   const data = {
-    name: form.name.value,
-    mobile: form.mobile.value,
-    city: form.city.value,
-    state: form.state.value,
-    job_type: form.job_type.value,
-    comments: form.comments.value
+    name: document.getElementById("name").value,
+    mobile: document.getElementById("mobile").value,
+    city: document.getElementById("city").value,
+    state: document.getElementById("state").value,
+    job_type: document.getElementById("job_type").value,
+    comments: document.getElementById("comments").value,
   };
 
   fetch("https://script.google.com/macros/s/AKfycbx8nzzYNHQIQn4bALim54BbBO7wb6aTmOnM0aKMZkj2f7bP4Ep8rg0RnB8gEbAYBtMO/exec", {
@@ -19,13 +17,17 @@ document.getElementById("leadForm").addEventListener("submit", function (e) {
       "Content-Type": "application/json"
     }
   })
-    .then((res) => res.json())
-    .then((response) => {
-      alert("Submitted successfully!");
-      form.reset();
-    })
-    .catch((err) => {
-      console.error("Error!", err.message);
-      alert("Something went wrong.");
-    });
+  .then(response => response.json())
+  .then(result => {
+    if (result.result === "success") {
+      alert("Form submitted successfully!");
+      document.getElementById("leadForm").reset(); // clear form
+    } else {
+      alert("Something went wrong: " + result.message);
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Something went wrong while submitting the form.");
+  });
 });
